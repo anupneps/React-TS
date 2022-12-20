@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
+import { IncomesOrExpenses } from '../types/IncomeOrExpenses'
 
 const initialFormData={
     source:"",
@@ -6,7 +7,7 @@ const initialFormData={
     date:""
 }
 
-const Income = ({setChildProp}:any) => {
+const Income = ({setChildProps}:any) => {
 
     const[formData, setFormData] = useState(initialFormData)
     const[showList, setShowList]=useState(false)
@@ -16,16 +17,14 @@ const Income = ({setChildProp}:any) => {
           ...prevState,
           [e.target.id]: e.target.value,
         }));
-        if(e.target.id ==="amount"){
-            setChildProp(e.target.value)
-        }
+        
     };
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();  
         setFormData(formData);
         setShowList(true)
-        
+        setChildProps(formData.amount)
     };
 
   return (

@@ -6,7 +6,7 @@ const initialFormData={
   date:""
 }
 
-const Expenses = ({setChildProp}:any) => {
+const Expenses = ({setChildProp, balance}:any) => {
   const[formData, setFormData] = useState(initialFormData)
   const[showList, setShowList]=useState(false)
 
@@ -15,15 +15,21 @@ const Expenses = ({setChildProp}:any) => {
       ...prevState,
       [e.target.id]: e.target.value,
     }));
-    if(e.target.id ==="amount"){
-      setChildProp(e.target.value)
-  }
+    
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();  
     setFormData(formData);
     setShowList(true)
+
+    
+      setChildProp(formData.amount)
+      if(formData.amount > balance){
+        alert("Not enough fund to add expenses!!")
+      }
+  
+
   };
  
 return (

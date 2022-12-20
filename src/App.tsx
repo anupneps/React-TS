@@ -9,7 +9,8 @@ function App() {
 
  const[income, setIncome]=useState(0)
  const[expense, setExpense]=useState(0)
- 
+ const[balance, setBalance]=useState(0)
+
 
   return (
     <>
@@ -17,13 +18,12 @@ function App() {
     <hr />
     <div className='App__container'>
     <div className="App">
-      <Income setChildProp={setIncome} />
-      
+      <Income setChildProps={setIncome} />
       <Expenses setChildProp={setExpense}/>
     </div>
     <div className="rightPane_container">
-      <Target />
-      <Balance incomeAmount = {income} expenseAmount = {expense}/>
+      <Target totalbalance = {balance} />
+      <Balance incomeAmount = {income} expenseAmount = {expense} balanceT={setBalance} />
     </div>
     </div>
     </>
