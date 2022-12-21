@@ -4,14 +4,14 @@ import { IncomesOrExpenses } from '../types/IncomeOrExpenses'
 const initialFormData={
     source:"",
     amount:"",
-    date:""
+    date: "" 
 }
 
 const Income = ({setChildProps}:any) => {
-
-    const[formData, setFormData] = useState(initialFormData)
+    const[formData, setFormData] = useState<IncomesOrExpenses>(initialFormData)
     const[showList, setShowList]=useState(false)
-
+    const[incomeList, setIncomeList]= useState<IncomesOrExpenses[]>([])
+    // const displayTransactions:IncomesOrExpenses[] = [];
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData((prevState) => ({
           ...prevState,
@@ -24,8 +24,12 @@ const Income = ({setChildProps}:any) => {
         e.preventDefault();  
         setFormData(formData);
         setShowList(true)
-        setChildProps(formData.amount)
+        const sum = incomeList.reduce((sum, curr)=> sum+(parseInt(curr.amount)), 0)
+        setChildProps(parseInt(formData.amount)+sum)
+        setIncomeList(prev=> [...prev, formData])
+        
     };
+    
 
   return (
     <>
@@ -42,7 +46,12 @@ const Income = ({setChildProps}:any) => {
     <div className='incomeStatement'>
         <h2>Income Statement</h2>
         <ul>
-        { showList ? <li> {formData.source}, {formData.amount}, {formData.date} </li>:""}
+        {/* { showList ? <li> {formData.source}, {formData.amount}, {formData.date} </li>:""} */}
+        { incomeList.map((transaction)=>{
+            return (
+             <li>{transaction.source}, {transaction.amount}, {transaction.date} </li>
+            )
+        })} 
         </ul>
     </div>
     </>
