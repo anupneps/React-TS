@@ -7,13 +7,15 @@ import React, { useState } from 'react'
   
 // }
 
-export const Balance = ({incomeAmount, expenseAmount, balanceT}:any) => {
+
+export const Balance = ({incomeAmount, expenseAmount, setTransferAmount, setBalance}:any) => {
  
   const[transferToSaving, setTransferToSaving]=useState(0)
+  const[balanceAmount, setBalanceAmount] = useState(0)
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();  
-    balanceT(transferToSaving)
+    setTransferAmount(transferToSaving)
   };
 
   const handleTransfer =(e:React.ChangeEvent<HTMLInputElement>) =>{
