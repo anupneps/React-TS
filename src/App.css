@@ -17,25 +17,24 @@ header{
   position: fixed;
   top: 0;
   height:60px;
-  background-color: lightblue;
+  background-color: rgb(165, 169, 170);
   width: 100%;
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-self: flex-start;
- 
+  justify-content: space-between;
+  align-self: flex-start; 
+  padding: 20px;
+  margin-top: 20px;
 }
 
-.incomeContainer{
+.incomeOrExpenseContainer{
   display: flex;
   justify-content: flex-start;
   padding: 10px;
   margin: 10px;
-  
- 
 }
 
 h2{
@@ -49,16 +48,21 @@ h2{
   
 }
 
-#amount, #targetAmount, #btn, #transferToSaving, #date{
+#amount, #targetAmount, #btn, #transferToSaving{
   margin-right: 5px;
   padding: 5px;
+}
+#date{
+  margin-right: 5px;
+  padding: 5px;
+  height: 15px;
 }
 
 .rightPane_container{
   display: flex;
   flex-direction: column;
-  
   margin: 10px;
+  margin-left: 10px;
   margin-top:50px;
   padding: 20px;
   width: 35%;
@@ -66,6 +70,7 @@ h2{
   height: 100vh;
   position: fixed;
   right: 0;
+  
 }
 
 .target{
@@ -82,4 +87,12 @@ h2{
   padding: 10px;
   text-align: center;
   margin-bottom: 50px;
+}
+
+.incomeOrExpenseList{
+  list-style: none;
+  border: 2px solid white;
+  margin: 2px;
+  width: 80%;
+  padding: 5px;
 }

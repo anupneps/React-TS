@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 
-export const Target = ({totalbalance}:any) => {
+export const Target = ({currentSavings}:any) => {
   const[target, setTarget]=useState(0)
-  const[savings, setSavings]=useState(0)
-  
-  
-useEffect(()=>{
-    setSavings(savings+totalbalance)
-},[totalbalance])
-
+   
 const resetOnClick= (()=>{
         setTarget(0)
     })
@@ -24,11 +18,14 @@ const onChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
       <input onChange={onChange} type="number" id='targetAmount' placeholder='Enter your target amount' value={target} />
       <button id='btn' onClick={resetOnClick} >Reset</button>
       <br />
-      <h2>Current Saving: {savings}</h2>
+      <h2>Current Saving: {currentSavings}</h2>
       <h2>Target: {target} </h2>
       {/* <label htmlFor="file">Progress: {(target/saving)*100} </label> */}
-      <h2>Progress: {(totalbalance/target)*100 | 0} %</h2>
-      <progress id="file" value={totalbalance} max={target}>  </progress>
+      <h2>Progress: {(currentSavings/target)*100 | 0} %</h2>
+      <progress id="file" value={currentSavings} max={target}>  </progress>
     </div>
   )
 }
+
+
+

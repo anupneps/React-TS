@@ -1,27 +1,31 @@
-import { Grid } from '@mui/material';
-import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
+import  {useState } from 'react';
 import './App.css';
 import { Balance } from './components/Balance';
-import Expenses from './components/Expenses';
 import IncomeExpenses from './components/IncomeExpenses';
-import Income from './components/IncomeExpenses';
 import { Target } from './components/Target';
 import { IncomesOrExpenses } from './types/IncomeOrExpenses';
 
-
-const getTotal =(list:IncomesOrExpenses[]):number => {
-  return list.reduce((sum, current)=> sum+parseInt(current.amount),0)
- 
-}
-
-
 function App() {
-
  const[incomeList, setIncomeList]=useState<IncomesOrExpenses[]>([])
  const[expenseList, setExpenseList]=useState<IncomesOrExpenses[]>([])
  const[balance, setBalance]=useState(0)
+ const[currentSavings, setSavings]=useState(0)
 
+function transferAmountHandler(amount:number){
+  if(balance<amount){
+    alert("Transfer amount exceeds the total balance !")
+    return
+  }
+  setSavings(currentSavings+amount)
+  setBalance(balance-amount)
+}
+
+function updateBalance(amount:number, isExpense:boolean){
+  if(isExpense){
+  return setBalance(balance-amount);
+  }
+  return setBalance(balance+amount)
+}
 
   return (
     <>
@@ -29,12 +33,12 @@ function App() {
     <hr />
     <div className='App__container'>
     <div className="App">
-      <IncomeExpenses callbackToParent={setIncomeList} inputData={incomeList} title={"Income Statement"} heading={"Incomes"} />
-      <IncomeExpenses callbackToParent={setExpenseList} inputData={expenseList} title={"Expense Statement"} heading={"Expenses"} balance = {balance} />
+      <IncomeExpenses updateBalance={updateBalance} callbackToParent={setIncomeList} inputData={incomeList} title={"Income Statement"} heading={"Incomes"} btnLabel = {"Income"}  />
+      <IncomeExpenses updateBalance={updateBalance} callbackToParent={setExpenseList} inputData={expenseList} title={"Expense Statement"} heading={"Expenses"} balance={balance} btnLabel = {"Expense"}  />
     </div>
     <div className="rightPane_container">
-      <Target totalbalance = {balance} />
-      <Balance incomeAmount = {getTotal(incomeList)} expenseAmount = {getTotal(expenseList)} setBalance={setBalance} />
+      <Target currentSavings = {currentSavings}  />
+      <Balance balance = {balance} transferAmountHandler = {transferAmountHandler} />
     </div>
     </div>
     </>
@@ -42,3 +46,6 @@ function App() {
 }
 
 export default App;
+
+
+
