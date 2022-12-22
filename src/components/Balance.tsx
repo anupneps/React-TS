@@ -1,11 +1,11 @@
 import React, {useState } from 'react'
 
-// type Props={
-//   balance:number
-//   transferAmountHandler(amount: number): void
-// }
+type Balance={
+  balance:number
+  transferAmountHandler(amount: number): void
+}
 
-export const Balance = ({balance, transferAmountHandler}:any) => {
+export const Balance = ({balance, transferAmountHandler}:Balance) => {
  
   const[transferToSaving, setTransferToSaving]=useState(0)
   

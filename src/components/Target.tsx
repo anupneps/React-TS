@@ -1,6 +1,10 @@
 import React, {useState } from 'react'
 
-export const Target = ({currentSavings}:any) => {
+type Savings ={
+  currentSavings: number
+}
+
+export const Target = ({currentSavings}:Savings) => {
   const[target, setTarget]=useState(0)
    
 const resetOnClick= (()=>{
