@@ -1,6 +1,6 @@
 import  {useState } from 'react';
 import './App.css';
-import { Balance } from './components/Balance';
+import Balances from './components/Balance';
 import IncomeExpenses from './components/IncomeExpenses';
 import { Target } from './components/Target';
 import { IncomesOrExpenses } from './types/IncomeOrExpenses';
@@ -38,7 +38,7 @@ function updateBalance(amount:number, isExpense:boolean){
     </div>
     <div className="rightPane_container">
       <Target currentSavings = {currentSavings}  />
-      <Balance balance = {balance} transferAmountHandler = {transferAmountHandler} />
+      <Balances balance = {balance} transferAmountHandler = {transferAmountHandler} />
     </div>
     </div>
     </>

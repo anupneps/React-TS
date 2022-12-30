@@ -5,7 +5,7 @@ type Balance={
   transferAmountHandler(amount: number): void
 }
 
-export const Balance = ({balance, transferAmountHandler}:Balance) => {
+const Balances = ({balance, transferAmountHandler}:Balance) => {
  
   const[transferToSaving, setTransferToSaving]=useState(0)
   
@@ -30,4 +30,6 @@ export const Balance = ({balance, transferAmountHandler}:Balance) => {
     </div>
   )
 }
+
+export default Balances
 
